@@ -1,0 +1,23 @@
+{
+  "name": "guitarhint",
+  "version": "1.0.0",
+  "description": "Application for learning chords definitions, suggesting chords progressions etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcinowski/guitarhint.git"
+  },
+  "author": "Marcin Muszynski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcinowski/guitarhint/issues"
+  },
+  "homepage": "https://github.com/marcinowski/guitarhint#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "vexflow": "^1.2.83"
+  }
+}
