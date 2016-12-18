@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-npm-debug.log*
+npm-debug.log
 
 # Runtime data
 pids
@@ -12,7 +12,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+node_modules/bower/lib/node_modules/cli-width/coverage
 
 # nyc test coverage
 .nyc_output
@@ -27,7 +27,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node_modules/log4js/node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -38,3 +38,8 @@ jspm_packages
 
 *.idea
 *packages/libs
+
+logs/*
+!.gitkeep
+node_modules/
+app/bower_components/
