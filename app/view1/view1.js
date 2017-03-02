@@ -2,77 +2,67 @@
 
 angular
     .module('myApp.view1', ['ngRoute'])
-
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/view1', {
             templateUrl: 'view1/view1.html',
             controller: 'View1Ctrl'
         });
     }])
+    .controller('View1Ctrl',
+    ['$scope', 'notes', 'strings', 'positions',
+    function($scope, notes, strings, positions) {
+        $scope.notes = notes;
+        $scope.strings = strings;
+        $scope.fretboard = positions.fretboard;
+        $scope.positions = positions.positions;
+        $scope.selectedNotes = [];
 
-    .controller('View1Ctrl', [function() {}])
-    .directive('fretboard', function() {
-        return {
-            restrict: 'E',
-            controller: 'View1Ctrl',
-            template: '<canvas id="myCanvas" width="1000" height="240" style="margin-left: 50px;"></canvas>',
-            link: function () {
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                // fretboard
-                ctx.lineWidth="1";
-                ctx.rect(0, 0, c.width, c.height);
-                ctx.stroke();
-                // strings
-                ctx.lineWidth="2";
-                for (var i=0; i < 6; i++) {
-                    var h = 20 + i*40;
-                    ctx.moveTo(0, h);
-                    ctx.lineTo(c.width, h);
-                    ctx.stroke();
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var rad = c.height/12;
+        var yOffset = c.height/6;
+        var xOffset = c.width/10;
+        var xCalc = function(x) {
+            if (x == 0) {
+                return null;
+            }
+            var dist = xOffset/2;
+            if (x > 4) {
+                dist += 4*xOffset;
+                x -= 4;
+                if (x > 4) {
+                    dist += xOffset*0.75/2;
+                    dist += 4*xOffset*0.75;
+                    x -= 4;
+                    if (x > 0){
+                        dist += xOffset*0.5/2;
+                        dist += x*xOffset*0.5;
+                    }
+                } else if (x > 0) {
+                    dist += x*xOffset*0.75;
                 }
-                // frets
-                ctx.lineWidth="1";
-                for (var i=0; i < 6; i++) {
-                    var s = i*100;
-                    ctx.moveTo(s, 0);
-                    ctx.lineTo(s, c.height);
-                    ctx.stroke();
-                }
-                for (var i=0; i < 5; i++) {
-                    var s = 500 + i*75;
-                    ctx.moveTo(s, 0);
-                    ctx.lineTo(s, c.height);
-                    ctx.stroke();
-                }
-                for (var i=0; i < 5; i++) {
-                    var s = 800 + i*50;
-                    ctx.moveTo(s, 0);
-                    ctx.lineTo(s, c.height);
-                    ctx.stroke();
-                }
-                // markers
-                ctx.fillStyle = 'lightgray';
-                ctx.beginPath();
-                ctx.arc(250,120,20,0,2*Math.PI);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(450,120,20,0,2*Math.PI);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(612,120,20,0,2*Math.PI);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(762,120,20,0,2*Math.PI);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(925,40,20,0,2*Math.PI);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(925,200,20,0,2*Math.PI);
-                ctx.fill();
-            },
-        }
-
-    }
-);
+            } else if (x > 0) {
+                dist += x*xOffset;
+            }
+            return dist;
+        };
+        var yCalc = function (y) {
+            return yOffset/2 + (5-y)*yOffset;
+        };
+        var circle = function(x, y) {
+            var posX = xCalc(x);
+            var posY = yCalc(y);
+            console.log(posX, posY)
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(posX, posY, rad, 0, 2*Math.PI);
+            ctx.fill();
+        };
+        $scope.test = function () {
+            angular.forEach($scope.selectedNotes, function(note) {
+                angular.forEach($scope.positions[note], function(p, i) {
+                    circle(p, i);
+                })
+            })
+        };
+    }])

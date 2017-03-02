@@ -1,49 +1,8 @@
-<svg height="250" width="500">
-    <ellipse cx="50" cy="60" rx="5" ry="4" transform="rotate(-40 55,60) translate(0 -2)" stroke="black" stroke-width="1" fill="black"></ellipse>
-    <line x1="55" y1="60" x2="55" y2="20" transform="translate(-1 -1)" style="stroke:black;stroke-width::1.5"></line>
-    <line x1="0" y1="0" x2="500" y2="0" style="stroke:black;stroke-width:1"></line>
-    <line x1="0" y1="15" x2="500" y2="15" style="stroke:black;stroke-width:1"></line>
-    <line x1="0" y1="30" x2="500" y2="30" style="stroke:black;stroke-width:1"></line>
-    <line x1="0" y1="45" x2="500" y2="45" style="stroke:black;stroke-width:1"></line>
-    <line x1="0" y1="60" x2="500" y2="60" style="stroke:black;stroke-width:1"></line>
-</svg>
+<div class="form-group">
+    <select class="form-component" ng-model="selectedNotes" multiple>
+        <option ng-repeat="note in notes">{{note}}</option>
+    </select>
+    {{ selectedNotes.join(', ') }}
+    <button ng-click="test()">Test</button>
+</div>
 <fretboard></fretboard>
-<svg height="240" width="1000" style="margin-left: 50px;">
-    <!-- fretboard -->
-    <rect x="0" y="0" width="1000" height="240" style="stroke: black; stroke-width: 1; fill: white;"></rect>
-    <!-- strings -->
-    <line x1="0" y1="20"  x2="1000" y2="20" style="stroke:black;stroke-width:2"></line>
-    <line x1="0" y1="60"  x2="1000" y2="60" style="stroke:black;stroke-width:2"></line>
-    <line x1="0" y1="100" x2="1000" y2="100" style="stroke:black;stroke-width:2"></line>
-    <line x1="0" y1="140" x2="1000" y2="140" style="stroke:black;stroke-width:2"></line>
-    <line x1="0" y1="180" x2="1000" y2="180" style="stroke:black;stroke-width:2"></line>
-    <line x1="0" y1="220" x2="1000" y2="220" style="stroke:black;stroke-width:2"></line>
-    <!-- frets -->
-    <line x1="0" y1="0" x2="0" y2="240" style="stroke:black;stroke-width:2"></line>
-    <line x1="100" y1="0" x2="100" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="200" y1="0" x2="200" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="300" y1="0" x2="300" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="400" y1="0" x2="400" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="500" y1="0" x2="500" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="575" y1="0" x2="575" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="650" y1="0" x2="650" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="725" y1="0" x2="725" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="800" y1="0" x2="800" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="850" y1="0" x2="850" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="900" y1="0" x2="900" y2="240" style="stroke:black;stroke-width:1"></line>
-    <line x1="950" y1="0" x2="950" y2="240" style="stroke:black;stroke-width:1"></line>
-    <!-- markers -->
-    <circle cx="250" cy="120" r="20" style="fill: lightgray;"></circle>
-    <circle cx="450" cy="120" r="20" style="fill: lightgray;"></circle>
-    <circle cx="612" cy="120" r="20" style="fill: lightgray;"></circle>
-    <circle cx="762" cy="120" r="20" style="fill: lightgray;"></circle>
-    <circle cx="925" cy="40" r="20" style="fill: lightgray;"></circle>
-    <circle cx="925" cy="200" r="20" style="fill: lightgray;"></circle>
-    <!-- sample note -->
-    <circle cx="250" cy="20" r="20" style="fill: green;"></circle>
-    <circle cx="250" cy="60" r="20" style="fill: green;"></circle>
-    <circle cx="350" cy="100" r="20" style="fill: green;"></circle>
-    <circle cx="450" cy="140" r="20" style="fill: green;"></circle>
-    <circle cx="450" cy="180" r="20" style="fill: green;"></circle>
-    <circle cx="250" cy="220" r="20" style="fill: green;"></circle>
-</svg>
