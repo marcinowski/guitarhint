@@ -1,12 +1,15 @@
 angular
-    .module('myApp.view1')
+    .module('myApp')
     .directive('fretboard', function() {
         return {
             restrict: 'E',
-            controller: 'View1Ctrl',
-            template: '<canvas id="myCanvas" width=1000 height=240></canvas>',
+            scope: {
+                width: '=',
+                height: '=',
+            },
+            template: '<canvas width="{{width}}" height="{{height}}"></canvas>',
             link: function (scope, element, attrs) {
-                var c = document.getElementById("myCanvas");
+                var c = element.children()[0];
                 var ctx = c.getContext("2d");
 
                 var height = c.height;

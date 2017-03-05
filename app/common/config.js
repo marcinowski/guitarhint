@@ -1,5 +1,5 @@
 angular
-    .module('myApp.view1')
+    .module('myApp')
     .constant('notes',
         ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'H']
      )

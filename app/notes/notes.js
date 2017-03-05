@@ -1,14 +1,14 @@
 'use strict';
 
 angular
-    .module('myApp.view1', ['ngRoute'])
+    .module('myApp.notes', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view1', {
-            templateUrl: 'view1/view1.html',
-            controller: 'View1Ctrl'
+        $routeProvider.when('/notes', {
+            templateUrl: 'notes/notes.html',
+            controller: 'NotesCtrl'
         });
     }])
-    .controller('View1Ctrl',
+    .controller('NotesCtrl',
     ['$scope', 'notes', 'strings', 'positions',
     function($scope, notes, strings, positions) {
         $scope.notes = notes;
@@ -17,33 +17,24 @@ angular
         $scope.positions = positions.positions;
         $scope.selectedNotes = [];
 
-        var c = document.getElementById("myCanvas");
+        var c = document.getElementById("notes");
         var ctx = c.getContext("2d");
         var rad = c.height/12;
         var yOffset = c.height/6;
         var xOffset = c.width/10;
+        var a = 0;
         var xCalc = function(x) {
-            if (x == 0) {
-                return null;
+            var k = [[5, 1], [4, 0.75], [2, 0.5]];  // this should be map or sth, but it works
+            var dist = 0;
+            x -= 1
+            for (var i=0; i<k.length; i++) {
+                let key = k[i][0];
+                let value = k[i][1];
+                if (x >= key) {dist += key * value; x -= key;}
+                else {dist += value * (x + 0.5); break;}
             }
-            var dist = xOffset/2;
-            if (x > 4) {
-                dist += 4*xOffset;
-                x -= 4;
-                if (x > 4) {
-                    dist += xOffset*0.75/2;
-                    dist += 4*xOffset*0.75;
-                    x -= 4;
-                    if (x > 0){
-                        dist += xOffset*0.5/2;
-                        dist += x*xOffset*0.5;
-                    }
-                } else if (x > 0) {
-                    dist += x*xOffset*0.75;
-                }
-            } else if (x > 0) {
-                dist += x*xOffset;
-            }
+            dist *= xOffset;
+            dist += a;
             return dist;
         };
         var yCalc = function (y) {
@@ -52,17 +43,19 @@ angular
         var circle = function(x, y) {
             var posX = xCalc(x);
             var posY = yCalc(y);
-            console.log(posX, posY)
             ctx.fillStyle = 'red';
             ctx.beginPath();
             ctx.arc(posX, posY, rad, 0, 2*Math.PI);
             ctx.fill();
         };
-        $scope.test = function () {
+        $scope.show = function () {
             angular.forEach($scope.selectedNotes, function(note) {
                 angular.forEach($scope.positions[note], function(p, i) {
                     circle(p, i);
                 })
             })
+        };
+        $scope.clear = function () {
+            ctx.clearRect(0, 0, c.width, c.height);
         };
     }])
