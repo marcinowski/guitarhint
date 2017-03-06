@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.notes',
   'myApp.chords',
+  'myApp.scales',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

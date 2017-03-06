@@ -21,12 +21,13 @@
     <ul class="menu">
         <li><a href="#!/notes">Find notes</a></li>
         <li><a href="#!/chords">Find chords</a></li>
+        <li><a href="#!/scales">Find scales</a></li>
     </ul>
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="container-fluid">
+    <div class="container">
         <div ng-view></div>
     </div>
 
@@ -41,10 +42,13 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="app.js"></script>
-    <script src="common/fretboard.js"></script>
     <script src="common/config.js"></script>
+    <script src="common/controller.js"></script>
+    <script src="common/fretboard.js"></script>
     <script src="notes/notes.js"></script>
     <script src="chords/chords.js"></script>
+    <script src="scales/scales.js"></script>
+    <script src="scales/config.js"></script>
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>

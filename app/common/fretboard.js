@@ -3,11 +3,7 @@ angular
     .directive('fretboard', function() {
         return {
             restrict: 'E',
-            scope: {
-                width: '=',
-                height: '=',
-            },
-            template: '<canvas width="{{width}}" height="{{height}}"></canvas>',
+            template: '<canvas width="1000" height="240"></canvas>',
             link: function (scope, element, attrs) {
                 var c = element.children()[0];
                 var ctx = c.getContext("2d");
