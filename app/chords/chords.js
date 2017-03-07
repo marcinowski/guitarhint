@@ -10,7 +10,7 @@ angular.module('myApp.chords', ['ngRoute'])
 }])
 
     .controller('ChordsCtrl',
-    ['$controller', '$scope', 'chords'
+    ['$controller', '$scope', 'chords',
     function($controller, $scope, chords) {
         $scope.c = document.getElementById('chords');
         angular.extend(this, $controller('CommonController', {$scope: $scope}));
