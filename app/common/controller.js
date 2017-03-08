@@ -33,7 +33,7 @@ angular
         $scope.yCalc = function (y) {
             return (0.5 + 5 - y)*$scope.yOffset;
         };
-        $scope.circle = function(x, y) {
+        $scope.circle = function(x, y, note) {
             var posX = $scope.xCalc(x);
             var posY = $scope.yCalc(y);
             $scope.ctx.fillStyle = 'red';
@@ -42,13 +42,29 @@ angular
             $scope.ctx.fill();
         };
         $scope.show = $scope.show || function () {
-            angular.forEach($scope.selectedNotes, function(note) {
+            $scope.clear();
+            var selectedNotes = $scope.selectedNotes || $scope.getSelectedNotes();
+            angular.forEach(selectedNotes, function(note) {
                 angular.forEach($scope.positions[note], function(p, i) {
-                    $scope.circle(p, i);
+                    $scope.circle(p, i, note);
                 })
             })
         };
         $scope.clear = $scope.clear || function () {
             $scope.ctx.clearRect(0, 0, $scope.c.width, $scope.c.height);
         };
+    }])
+    .controller('CommonCollectionController',
+    ['$controller', '$scope',
+    function($controller, $scope) {
+        $scope.getSelectedNotes = function () {
+            var ind = $scope.notes.indexOf($scope.selectedNote);
+            var scaleNotes = [];
+            angular.forEach($scope.selectedCol, function(note) {
+                let i = (ind + note) % $scope.notes.length;
+                scaleNotes.push($scope.notes[i]);
+            })
+            return scaleNotes;
+        };
+        angular.extend(this, $controller('CommonController', {$scope: $scope}));
     }])

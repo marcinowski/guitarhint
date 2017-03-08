@@ -1,9 +1,9 @@
 <div class="col-md-12">
     <div class="row">
         <h2 class="page-header">Find scales</h2>
-        <select ng-model="selectedScale" ng-options="scale.value as scale.label for scale in scales"></select>
+        <select ng-model="selectedCol" ng-options="scale.value as scale.label for scale in scales"></select>
         <select ng-model="selectedNote" ng-options="note for note in notes"></select>
-        <button ng-click="show()" ng-disabled="!selectedNote || !selectedScale">Show Scale</button>
+        <button ng-click="show()" ng-disabled="!selectedNote || !selectedCol">Show Scale</button>
         <button ng-click="clear()">Clear</button>
         <div style="height: 300px;">
             <fretboard width="1000" height="240" style="position: absolute; z-index:0;"></fretboard>

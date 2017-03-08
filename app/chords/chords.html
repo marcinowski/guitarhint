@@ -1,6 +1,19 @@
 <div class="col-md-10 col-md-offset-1">
     <div class="row">
-        <h2 class="page-header">Find scales</h2>
+        <h2 class="page-header">Find chords</h2>
+        <div class="row">
+            <select
+                ng-model="selectedCol"
+                style="width: 100px;"
+                ng-options="chord.notes as chord.label group by chord.group for chord in chords">
+            </select>
+            <select ng-model="selectedNote" ng-options="note for note in notes"></select>
+            <div class="form-group">
+                <button type="button" class="btn btn-info" ng-click="show()" ng-disabled="!selectedNote || !selectedCol">
+                    Show</button>
+                <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
+            </div>
+        </div>
         <div style="height: 300px;">
             <fretboard width="1000" height="240" style="position: absolute; z-index:0;"></fretboard>
             <canvas id="chords" width="1000" height="240" style="position: absolute; z-index:1;"></canvas>
